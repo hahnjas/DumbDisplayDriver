@@ -1,0 +1,6 @@
+/Users/jasperh/DEV/DumbDisplayDriver/Application/build/intermediates/classes/debug
+/Users/jasperh/DEV/DumbDisplayDriver/Application/build/intermediates/pre-dexed/debug/support-annotations-21.0.3-865f6931607b6624e1e6644a34011bd27e21a3c6.jar
+/Users/jasperh/DEV/DumbDisplayDriver/Application/build/intermediates/pre-dexed/debug/classes-5a5d833fcbf42e8f7bf77e69457b8660677e9f7b.jar
+/Users/jasperh/DEV/DumbDisplayDriver/Application/build/intermediates/pre-dexed/debug/classes-a35f030160ec6fed978b105ffb0b7e1a3bf97604.jar
+/Users/jasperh/DEV/DumbDisplayDriver/Application/build/intermediates/pre-dexed/debug/internal_impl-21.0.3-3f54002f6efe12986cad445e46105e71d2947f4e.jar
+/Users/jasperh/DEV/DumbDisplayDriver/Application/build/intermediates/pre-dexed/debug/classes-abb1258f47c59de55b27f2e8d2ad5641eb26e9d5.jar
