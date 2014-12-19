@@ -80,13 +80,6 @@ public class MainActivity extends Activity {
 	
 
 	
-	///////////////////////////////////////////////////////////////////////////////
-	// METHODS
-	///////////////////////////////////////////////////////////////////////////////
-
-	/**
-	 * 
-	 */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -115,9 +108,6 @@ public class MainActivity extends Activity {
 		Log.d(TAG, "START");
 	}
 
-	/**
-	 * 
-	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		super.onCreateOptionsMenu(menu);
@@ -125,10 +115,6 @@ public class MainActivity extends Activity {
 		//getMenuInflater().inflate(R.menu.main, menu);
 		return true;
 	}
-
-	/**
-	 * 
-	 */
 	@Override
 	protected void onResume() {
 		super.onResume();
@@ -149,9 +135,6 @@ public class MainActivity extends Activity {
 
 	}// on resume end
 
-	/**
-	 * 
-	 */
 	@Override
 	protected void onPause() {
 		super.onPause();
@@ -162,9 +145,6 @@ public class MainActivity extends Activity {
 			mNfcAdapter.disableForegroundDispatch(this);
 	}
 
-	/**
-	 * 
-	 */
 	@Override
 	protected void onNewIntent(Intent intent) {
 		super.onNewIntent(intent);

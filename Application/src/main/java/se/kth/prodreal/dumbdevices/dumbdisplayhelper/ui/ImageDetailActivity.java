@@ -43,6 +43,7 @@ import se.kth.prodreal.dumbdevices.dumbdisplayhelper.nfc.NfcSendTask;
 import se.kth.prodreal.dumbdevices.dumbdisplayhelper.provider.Images;
 import se.kth.prodreal.dumbdevices.dumbdisplayhelper.util.ImageCache;
 import se.kth.prodreal.dumbdevices.dumbdisplayhelper.util.ImageFetcher;
+import se.kth.prodreal.dumbdevices.dumbdisplayhelper.util.ImageFetcherLocal;
 import se.kth.prodreal.dumbdevices.dumbdisplayhelper.util.Utils;
 
 public class ImageDetailActivity extends FragmentActivity implements OnClickListener {
@@ -50,7 +51,7 @@ public class ImageDetailActivity extends FragmentActivity implements OnClickList
     public static final String EXTRA_IMAGE = "extra_image";
 
     private ImagePagerAdapter mAdapter;
-    private ImageFetcher mImageFetcher;
+    private ImageFetcherLocal mImageFetcher;
     private ViewPager mPager;
 
     @TargetApi(VERSION_CODES.HONEYCOMB)
@@ -81,7 +82,7 @@ public class ImageDetailActivity extends FragmentActivity implements OnClickList
         cacheParams.setMemCacheSizePercent(0.25f); // Set memory cache to 25% of app memory
 
         // The ImageFetcher takes care of loading images into our ImageView children asynchronously
-        mImageFetcher = new ImageFetcher(this, longest);
+        mImageFetcher = new ImageFetcherLocal(this, longest);
         mImageFetcher.addImageCache(getSupportFragmentManager(), cacheParams);
         mImageFetcher.setImageFadeIn(false);
 
@@ -178,7 +179,7 @@ public class ImageDetailActivity extends FragmentActivity implements OnClickList
     /**
      * Called by the ViewPager child fragments to load images via the one ImageFetcher
      */
-    public ImageFetcher getImageFetcher() {
+    public ImageFetcherLocal getImageFetcher() {
         return mImageFetcher;
     }
 
@@ -202,7 +203,7 @@ public class ImageDetailActivity extends FragmentActivity implements OnClickList
 
         @Override
         public Fragment getItem(int position) {
-            return ImageDetailFragment.newInstance(Images.imageUrls[position]);
+            return ImageDetailFragment.newInstance(position);
         }
     }
 

@@ -26,6 +26,7 @@ import android.widget.ImageView;
 
 import se.kth.prodreal.dumbdevices.dumbdisplayhelper.R;
 import se.kth.prodreal.dumbdevices.dumbdisplayhelper.util.ImageFetcher;
+import se.kth.prodreal.dumbdevices.dumbdisplayhelper.util.ImageFetcherLocal;
 import se.kth.prodreal.dumbdevices.dumbdisplayhelper.util.ImageWorker;
 import se.kth.prodreal.dumbdevices.dumbdisplayhelper.util.Utils;
 
@@ -34,21 +35,20 @@ import se.kth.prodreal.dumbdevices.dumbdisplayhelper.util.Utils;
  */
 public class ImageDetailFragment extends Fragment {
     private static final String IMAGE_DATA_EXTRA = "extra_image_data";
-    private String mImageUrl;
+    private int imageNo;
     private ImageView mImageView;
-    private ImageFetcher mImageFetcher;
+    private ImageFetcherLocal mImageFetcher;
 
     /**
      * Factory method to generate a new instance of the fragment given an image number.
      *
-     * @param imageUrl The image url to load
      * @return A new instance of ImageDetailFragment with imageNum extras
      */
-    public static ImageDetailFragment newInstance(String imageUrl) {
+    public static ImageDetailFragment newInstance(int imageNo) {
         final ImageDetailFragment f = new ImageDetailFragment();
 
         final Bundle args = new Bundle();
-        args.putString(IMAGE_DATA_EXTRA, imageUrl);
+        args.putInt(IMAGE_DATA_EXTRA, imageNo);
         f.setArguments(args);
 
         return f;
@@ -61,12 +61,11 @@ public class ImageDetailFragment extends Fragment {
 
     /**
      * Populate image using a url from extras, use the convenience factory method
-     * {@link ImageDetailFragment#newInstance(String)} to create this fragment.
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mImageUrl = getArguments() != null ? getArguments().getString(IMAGE_DATA_EXTRA) : null;
+        imageNo = getArguments() != null ? getArguments().getInt(IMAGE_DATA_EXTRA) : null;
     }
 
     @Override
@@ -86,7 +85,7 @@ public class ImageDetailFragment extends Fragment {
         // cache can be used over all pages in the ViewPager
         if (ImageDetailActivity.class.isInstance(getActivity())) {
             mImageFetcher = ((ImageDetailActivity) getActivity()).getImageFetcher();
-            mImageFetcher.loadImage(mImageUrl, mImageView);
+            mImageFetcher.loadImage(imageNo, mImageView);
         }
 
         // Pass clicks on the ImageView to the parent activity to handle

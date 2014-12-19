@@ -46,6 +46,7 @@ import se.kth.prodreal.dumbdevices.dumbdisplayhelper.R;
 import se.kth.prodreal.dumbdevices.dumbdisplayhelper.provider.Images;
 import se.kth.prodreal.dumbdevices.dumbdisplayhelper.util.ImageCache;
 import se.kth.prodreal.dumbdevices.dumbdisplayhelper.util.ImageFetcher;
+import se.kth.prodreal.dumbdevices.dumbdisplayhelper.util.ImageFetcherLocal;
 import se.kth.prodreal.dumbdevices.dumbdisplayhelper.util.Utils;
 
 /**
@@ -62,7 +63,7 @@ public class ImageGridFragment extends Fragment implements AdapterView.OnItemCli
     private int mImageThumbSize;
     private int mImageThumbSpacing;
     private ImageAdapter mAdapter;
-    private ImageFetcher mImageFetcher;
+    private ImageFetcherLocal mImageFetcher;
 
     /**
      * Empty constructor as per the Fragment documentation
@@ -85,9 +86,14 @@ public class ImageGridFragment extends Fragment implements AdapterView.OnItemCli
         cacheParams.setMemCacheSizePercent(0.25f); // Set memory cache to 25% of app memory
 
         // The ImageFetcher takes care of loading images into our ImageView children asynchronously
-        mImageFetcher = new ImageFetcher(getActivity(), mImageThumbSize);
+        mImageFetcher = new ImageFetcherLocal(getActivity(), mImageThumbSize);
         mImageFetcher.setLoadingImage(R.drawable.empty_photo);
         mImageFetcher.addImageCache(getActivity().getSupportFragmentManager(), cacheParams);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
     }
 
     @Override
@@ -304,7 +310,8 @@ public class ImageGridFragment extends Fragment implements AdapterView.OnItemCli
 
             // Finally load the image asynchronously into the ImageView, this also takes care of
             // setting a placeholder image while the background thread runs
-            mImageFetcher.loadImage(Images.imageThumbUrls[position - mNumColumns], imageView);
+//            mImageFetcher.loadImage(Images.imageThumbUrls[position - mNumColumns], imageView);
+            mImageFetcher.loadImage(position - mNumColumns, imageView);
             return imageView;
             //END_INCLUDE(load_gridview_item)
         }
