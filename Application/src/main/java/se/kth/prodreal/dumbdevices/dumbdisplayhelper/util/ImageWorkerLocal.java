@@ -52,7 +52,7 @@ public abstract class ImageWorkerLocal {
     }
 
     public void loadScaledImage(int posOfImage, ImageView imageView) {
-        loadImage(posOfImage, imageView, false);
+        loadImage(posOfImage, imageView, true);
     }
 
     private void loadImage(int posOfImage, ImageView imageView, boolean scaled) {

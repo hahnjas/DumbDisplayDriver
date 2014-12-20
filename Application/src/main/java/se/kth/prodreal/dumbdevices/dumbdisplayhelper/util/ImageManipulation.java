@@ -5,6 +5,7 @@ package se.kth.prodreal.dumbdevices.dumbdisplayhelper.util;
 //import java.nio.ShortBuffer;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.Matrix;
 
@@ -54,6 +55,31 @@ public class ImageManipulation {
 		
 		return resizedBitmap;
 	}
+
+
+    /**
+     * Scale a bitmap to the given height and width
+     * @param newHeight The new height
+     * @param newWidth The new width
+     * @return The scaled bitmap
+     */
+    public static Bitmap getResizedBitmap(String filepath, int newHeight, int newWidth) {
+        Bitmap src = BitmapFactory.decodeFile(filepath);
+        int width = src.getWidth();
+        int height = src.getHeight();
+        float scaleWidth = ((float) newWidth) / width;
+        float scaleHeight = ((float) newHeight) / height;
+        // CREATE A MATRIX FOR THE MANIPULATION
+        Matrix matrix = new Matrix();
+        // RESIZE THE BIT MAP
+        matrix.postScale(scaleWidth, scaleHeight);
+
+        // Generate scaled bitmap
+        Bitmap resizedBitmap = Bitmap.createBitmap(src, 0, 0, width, height,
+                matrix, false);
+
+        return resizedBitmap;
+    }
 
 	/**
 	 * Create a black and white version of the given bitmap

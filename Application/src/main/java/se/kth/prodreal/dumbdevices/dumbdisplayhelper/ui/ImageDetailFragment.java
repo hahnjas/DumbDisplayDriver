@@ -85,7 +85,7 @@ public class ImageDetailFragment extends Fragment {
         // cache can be used over all pages in the ViewPager
         if (ImageDetailActivity.class.isInstance(getActivity())) {
             mImageFetcher = ((ImageDetailActivity) getActivity()).getImageFetcher();
-            mImageFetcher.loadImage(imageNo, mImageView);
+            mImageFetcher.loadScaledImage(imageNo, mImageView);
         }
 
         // Pass clicks on the ImageView to the parent activity to handle

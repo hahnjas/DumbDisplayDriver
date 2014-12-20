@@ -163,20 +163,19 @@ public class ImageFetcherLocal extends ImageResizerLocal {
             Log.d(TAG, "processBitmap - " + posOfImage);
         }
 
-
-
         File imgFile = this.files[posOfImage];
         Bitmap bitmap = null;
+
         if (imgFile != null) {
+            if(scaled) {
+               Bitmap resizedBitmap = ImageManipulation.getResizedBitmap(imgFile.getAbsolutePath(), REQ_IMG_HEIGHT, REQ_IMG_WIDTH);
+                bitmap = ImageManipulation.createBlackAndWhite(resizedBitmap);
+            } else {
             bitmap = decodeSampledBitmapFromFile(imgFile.getAbsolutePath(), mImageWidth,
                     mImageHeight, getImageCache());
+            }
         }
 
-        if(scaled) {
-           Bitmap resizedBitmap = ImageManipulation.getResizedBitmap(bitmap, REQ_IMG_HEIGHT, REQ_IMG_WIDTH);
-           Bitmap bwBitmap = ImageManipulation.createBlackAndWhite(resizedBitmap);
-            return bwBitmap;
-        }
         return bitmap;
     }
 
